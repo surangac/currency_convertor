@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Users</title>
+</head>
+<body>
+<form>
+    <label for="srcCurrency">Source Currency:</label>
+    <input type="text" id="srcCurrency" name="srcCurrency">
+    <br>
+    <label for="trgCurrency">Target Currency:</label>
+    <input type="text" id="trgCurrency" name="trgCurrency">
+    <br>
+    <label for="monetaryValue">Monetary Value:</label>
+    <input type="number" id="monetaryValue" name="monetaryValue">
+    <br>
+    <button type="button" onclick="getCurrencyConverted()">Search</button>
+</form>
+<br>
+<div id="results"></div>
+
+<script>
+    function getCurrencyConverted() {
+      var srcCurrency = document.getElementById("srcCurrency").value;
+      var trgCurrency = document.getElementById("trgCurrency").value;
+      var monetaryValue = document.getElementById("monetaryValue").value;
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://localhost:8080/api/currency-converter?source=" + srcCurrency + "&target=" + trgCurrency + "&amount=" + monetaryValue);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          var results = document.getElementById("results");
+
+          results.innerHTML = "";
+
+          if(response.status === -1) {
+            results.innerHTML += response.message;
+          } else {
+             var formattedResponse = new Intl.NumberFormat('en-GB', { style: 'currency', currency: trgCurrency }).format(response.result);
+             results.innerHTML += "Rate: " + response.rate + " Result: " + formattedResponse;
+          }
+        }
+        else {
+          console.log("Error: " + xhr.status);
+        }
+      };
+      xhr.send();
+    }
+  </script>
+</body>
+</html>
