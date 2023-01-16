@@ -36,7 +36,7 @@ sample response
 using the admin page just double-click on the run/CurrencyConverterAdmin.html 
 
 Extra Points: **implemented and can be view in browser**
-Extra Points: **by default enabled in spring boot**
-Extra Points: **my Amazon free tyre is expired**
-Extra Points: **spring-boot-starter-actuator and required configuration is added it is just a matter of
+</br>Extra Points: **by default enabled in spring boot**
+</br>Extra Points: **my Amazon free tyre is expired**
+</br>Extra Points: **spring-boot-starter-actuator and required configuration is added it is just a matter of
     To use Grafana and Prometheus together we will have to configure Prometheus as a data source in Grafana,**
